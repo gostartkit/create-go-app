@@ -1,0 +1,33 @@
+{
+    "name": "create-go-app",
+    "version": "0.0.1",
+    "keywords": [
+      "go"
+    ],
+    "description": "Create Go apps with no build configuration.",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/gostartkit/create-go-app.git",
+      "directory": "packages/create-go-app"
+    },
+    "license": "AGPL",
+    "engines": {
+      "node": ">=14"
+    },
+    "bugs": {
+      "url": "https://github.com/gostartkit/create-go-app/issues"
+    },
+    "files": [
+      "index.js",
+      "createGoApp.js"
+    ],
+    "bin": {
+      "create-react-app": "./index.js"
+    },
+    "scripts": {
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+  }
