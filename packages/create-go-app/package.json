@@ -1,6 +1,6 @@
 {
     "name": "create-go-app",
-    "version": "0.0.1",
+    "version": "0.0.10-test-0001",
     "keywords": [
       "go"
     ],
@@ -22,7 +22,7 @@
       "createGoApp.js"
     ],
     "bin": {
-      "create-react-app": "./index.js"
+      "create-go-app": "./index.js"
     },
     "scripts": {
     },
