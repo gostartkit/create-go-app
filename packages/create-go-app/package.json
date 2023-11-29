@@ -1,6 +1,6 @@
 {
     "name": "create-go-app",
-    "version": "0.0.10-test-0001",
+    "version": "0.0.10-test-0002",
     "keywords": [
       "go"
     ],
@@ -10,6 +10,7 @@
       "url": "https://github.com/gostartkit/create-go-app.git",
       "directory": "packages/create-go-app"
     },
+    "author": "GoStartKit team <support@gostartkit.com>",
     "license": "AGPL",
     "engines": {
       "node": ">=14"
@@ -18,11 +19,10 @@
       "url": "https://github.com/gostartkit/create-go-app/issues"
     },
     "files": [
-      "index.js",
-      "createGoApp.js"
+      "dist"
     ],
     "bin": {
-      "create-go-app": "./index.js"
+      "create-go-app": "./dist/index.js"
     },
     "scripts": {
     },
