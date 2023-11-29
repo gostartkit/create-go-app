@@ -4,7 +4,7 @@ const packageJson = require('./package.json');
 
 let projectName;
 
-function init() {
+const init = () => {
     console.log("we are here.");
 }
 
