@@ -1,5 +1,4 @@
 {
-    "type": "module",
     "name": "create-go-app",
     "version": "0.0.11",
     "keywords": [
@@ -22,8 +21,21 @@
     "files": [
         "dist"
     ],
+    "main": "./dist/index.js",
     "bin": {
         "create-go-app": "./dist/index.js"
     },
-    "scripts": {}
+    "scripts": {
+        "build": "tsc",
+        "release": "tsc --build",
+        "start": "ts-node src/index.ts"
+    },
+    "dependencies":{
+        "commander": "^12.1.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.14.2",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.5"
+    }
 }
