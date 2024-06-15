@@ -1,13 +1,11 @@
 'use strict';
 
-const packageJson = require('./package.json');
+import { readFileSync } from 'fs';
+
+const packageJson = JSON.parse(readFileSync(new URL('./package.json', import.meta.url)));
 
 let projectName;
 
-const init = () => {
-    console.log("we are here.");
+export const init = () => {
+    console.log("we are here.", packageJson.type);
 }
-
-module.exports = {
-  init,
-};
