@@ -43,8 +43,7 @@ const program = new Command()
   Prefix of module name. module name: $prefix/$project-name
 `
   )
-  .parse(process.argv)
-  .opts();
+  .parse(process.argv);
 
 async function run(): Promise<void> {
 
@@ -69,18 +68,22 @@ async function run(): Promise<void> {
     }
   }
 
+  const programName = program.name()
+
   if (!projectName) {
     console.log(
       '\nPlease specify the project name:\n' +
-      `  ${cyan(packageJson.name)} ${green('<project-name>')}\n` +
+      `  ${cyan(programName)} ${green('<project-name>')}\n` +
       'For example:\n' +
-      `  ${cyan(packageJson.name)} ${green('demo')}\n\n` +
-      `Run ${cyan(`${packageJson.name} --help`)} to see all options.`
+      `  ${cyan(programName)} ${green('demo')}\n\n` +
+      `Run ${cyan(`${programName} --help`)} to see all options.`
     )
     process.exit(1)
   }
 
-  let prefix = program.prefix;
+  const opts = program.opts()
+
+  let prefix = opts.prefix;
 
   if (!prefix) {
     const res = await prompts({
@@ -103,18 +106,16 @@ async function run(): Promise<void> {
     }
   }
 
-  if (prefix) {
+  if (!prefix) {
     console.log(
       '\nPlease specify the project name:\n' +
-      `  ${cyan(packageJson.name)} ${green('--prefix <module-prefix-name>')}\n` +
+      `  ${cyan(programName)} ${green('--prefix <module-prefix-name>')}\n` +
       'For example:\n' +
-      `  ${cyan(packageJson.name)} ${green('--prefix app.gostartkit.com/go')}\n\n` +
-      `Run ${cyan(`${packageJson.name} --help`)} to see all options.`
+      `  ${cyan(programName)} ${green('--prefix app.gostartkit.com/go')}\n\n` +
+      `Run ${cyan(`${programName} --help`)} to see all options.`
     )
     process.exit(1)
   }
-
-  console.log(`program name: ${JSON.stringify(program)}`)
 }
 
 
