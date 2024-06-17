@@ -30,11 +30,14 @@
         "release": "tsc --build",
         "start": "ts-node src/index.ts"
     },
-    "dependencies":{
+    "dependencies": {
         "commander": "^12.1.0"
     },
     "devDependencies": {
         "@types/node": "^20.14.2",
+        "@types/prompts": "^2.4.9",
+        "picocolors": "^1.0.1",
+        "prompts": "^2.4.2",
         "ts-node": "^10.9.2",
         "typescript": "^5.4.5"
     }
