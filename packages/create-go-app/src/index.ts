@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-import { type InitialReturnValue } from 'prompts';
-import { cyan, green, red } from 'picocolors'
-import { Command } from 'commander';
-import { validateName, validatePrefix } from './validator';
-import prompts from 'prompts';
-import packageJson from '../package.json';
-import path from 'path';
-import { AppFiles, AppGitRev, StubVersion } from './data';
 import { open, mkdir } from 'node:fs/promises';
+import path from 'path';
+import { Command } from 'commander';
+import { bold, cyan, green, red, yellow } from 'picocolors';
+import prompts, { type InitialReturnValue } from 'prompts';
+import checkForUpdate from 'update-check';
+import packageJson from '../package.json';
+import { AppFiles, AppGitRev, StubVersion } from './data';
+import { validateName, validatePrefix } from './validator';
 import { randomString, replaceWithMap } from './utils';
 
 let projectName: string = ''
@@ -49,8 +49,6 @@ const program = new Command()
   .parse(process.argv);
 
 async function run(): Promise<void> {
-  const version = process.argv.find(arg => arg.startsWith('@'))?.slice(1) || 'latest';
-  console.log(`version: ${version}`);
 
   if (!projectName) {
     const res = await prompts({
@@ -172,11 +170,30 @@ async function run(): Promise<void> {
   }
 }
 
+const update = checkForUpdate(packageJson).catch(() => null)
+
+async function notifyUpdate(): Promise<void> {
+  try {
+    const res = await update
+    if (res?.latest) {
+      const updateMessage = `pnpm add -g ${packageJson.name}`;
+
+      console.log(
+        yellow(bold(`A new version of ${packageJson.name} is available!`)) +
+          '\n' +
+          'You can update by running: ' +
+          cyan(updateMessage) +
+          '\n'
+      )
+    }
+    process.exit()
+  } catch {
+    // ignore error
+  }
+}
 
 run()
-  .then(function () {
-
-  })
+  .then(notifyUpdate)
   .catch(async (reason) => {
     console.log()
     console.log('Aborting installation.')
