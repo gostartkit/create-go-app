@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { type InitialReturnValue } from 'prompts';
-import { cyan, green, red, yellow, bold, blue } from 'picocolors'
+import { cyan, green, red } from 'picocolors'
 import { Command } from 'commander';
 import { validateName, validatePrefix } from './validator';
 import prompts from 'prompts';
