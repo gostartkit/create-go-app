@@ -1,6 +1,6 @@
 {
     "name": "create-go-app",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "keywords": [
         "go"
     ],
@@ -27,12 +27,13 @@
     },
     "scripts": {
         "build": "tsc",
-        "release": "tsc --build",
+        "release": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
         "start": "ts-node src/index.ts"
     },
     "devDependencies": {
         "@types/node": "^20.14.2",
         "@types/prompts": "^2.4.9",
+        "@vercel/ncc": "^0.38.1",
         "commander": "^12.1.0",
         "picocolors": "^1.0.1",
         "prompts": "^2.4.2",
