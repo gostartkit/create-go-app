@@ -26,7 +26,8 @@
         "create-go-app": "./dist/index.js"
     },
     "scripts": {
-        "build": "tsc",
+        "dev": "ncc build ./src/index.ts -w -o dist/",
+        "build": "pnpm release",
         "release": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
         "start": "ts-node src/index.ts"
     },
