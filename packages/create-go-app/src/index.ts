@@ -7,6 +7,9 @@ import { validateName, validatePrefix } from './validator';
 import prompts from 'prompts';
 import packageJson from '../package.json';
 import path from 'path';
+import { AppFiles, AppGitRev, StubVersion } from './data';
+import { open, mkdir } from 'node:fs/promises';
+import { randomString, replaceBrackets } from './utils';
 
 let projectName: string = ''
 
@@ -115,6 +118,53 @@ async function run(): Promise<void> {
       `Run ${cyan(`${programName} --help`)} to see all options.`
     )
     process.exit(1)
+  }
+
+  const decoder = new TextDecoder("utf-8");
+  const stubModuleName = "gostartkit.com/go/app";
+  const moduleName = `${prefix}/${projectName}`;
+
+  const v = {
+    Key: projectName,
+    ModuleName: moduleName,
+    DatabaseDriver: "mysql",
+    DatabaseHost: "127.0.0.1",
+    DatabaseName: projectName,
+    DatabaseUser: projectName,
+    DatabaseRootPassword: randomString(32),
+    DatabasePassword: randomString(32),
+    DatabaseCharset: "utf8",
+    DatabaseCollation: "utf8_general_ci",
+    StubVersion: StubVersion,
+    StubGitRev: AppGitRev
+  };
+
+  for (const f of AppFiles) {
+    const rel = f.key;
+    const codeFile = path.join(projectName, rel);
+    console.log(`codeFile: ${codeFile}`)
+    let value = decoder.decode(f.value);
+    if (rel.endsWith(".go") || rel.endsWith(".mod")) {
+      value = value.replace(new RegExp(stubModuleName, 'g'), moduleName);
+    }
+    value = replaceBrackets(value, v);
+    const dir = path.dirname(codeFile);
+
+    try {
+      await mkdir(dir, { recursive: true });
+    } catch (err: any) {
+      console.log(`mkdir: ${err}`)
+    }
+
+    let w = null;
+
+    try {
+      w = await open(codeFile, "w");
+      w.write(value);
+    } finally {
+      await w?.close();
+    }
+    console.log(`dir: ${dir}`)
   }
 }
 
