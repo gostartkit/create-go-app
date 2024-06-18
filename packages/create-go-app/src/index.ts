@@ -160,7 +160,11 @@ async function run(): Promise<void> {
     try {
       w = await open(codeFile, "w");
       w.write(value);
-    } finally {
+    }
+    catch (err: any){
+      console.log(`write: ${err}`)
+    }
+    finally {
       await w?.close();
     }
   }
