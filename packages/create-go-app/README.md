@@ -15,5 +15,9 @@ yarn create go-app demo
 ## pnpm
 
 ```bash
+pnpm create go-app demo
+```
+
+```bash
 pnpm dlx create-go-app demo
 ```

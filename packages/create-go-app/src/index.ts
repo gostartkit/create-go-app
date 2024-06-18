@@ -37,7 +37,7 @@ const program = new Command()
   .argument('[project-name]')
   .usage(`${green('[project-name]')} [options]`)
   .action((name) => {
-    projectName = name
+    projectName = name;
   })
   .option(
     '-p, --prefix <module-prefix-name>',
@@ -49,6 +49,8 @@ const program = new Command()
   .parse(process.argv);
 
 async function run(): Promise<void> {
+  const version = process.argv.find(arg => arg.startsWith('@'))?.slice(1) || 'latest';
+  console.log(`version: ${version}`);
 
   if (!projectName) {
     const res = await prompts({
