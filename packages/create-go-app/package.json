@@ -1,6 +1,6 @@
 {
     "name": "create-go-app",
-    "version": "0.1.1",
+    "version": "0.1.11",
     "keywords": [
         "go"
     ],
@@ -30,15 +30,14 @@
         "release": "tsc --build",
         "start": "ts-node src/index.ts"
     },
-    "dependencies": {
-        "commander": "^12.1.0",
-        "picocolors": "^1.0.1",
-        "prompts": "^2.4.2"
-    },
     "devDependencies": {
         "@types/node": "^20.14.2",
         "@types/prompts": "^2.4.9",
+        "commander": "^12.1.0",
+        "picocolors": "^1.0.1",
+        "prompts": "^2.4.2",
         "ts-node": "^10.9.2",
-        "typescript": "^5.4.5"
+        "typescript": "^5.4.5",
+        "update-check": "^1.5.4"
     }
 }
