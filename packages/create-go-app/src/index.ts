@@ -9,7 +9,7 @@ import checkForUpdate from 'update-check';
 import packageJson from '../package.json';
 import { AppFiles, AppGitRev, StubVersion } from './data';
 import { validateName, validatePrefix } from './validator';
-import { randomString, replaceWithMap } from './utils';
+import { getPkgManager, randomString, replaceWithMap } from './utils';
 
 let projectName: string = ''
 
@@ -47,6 +47,8 @@ const program = new Command()
 `
   )
   .parse(process.argv);
+
+const packageManager = getPkgManager()
 
 async function run(): Promise<void> {
 
@@ -176,7 +178,14 @@ async function notifyUpdate(): Promise<void> {
   try {
     const res = await update
     if (res?.latest) {
-      const updateMessage = `pnpm add -g ${packageJson.name}`;
+      const updateMessage =
+        packageManager === 'yarn'
+          ? `yarn global add ${packageJson.name}`
+          : packageManager === 'pnpm'
+            ? `pnpm add -g ${packageJson.name}`
+            : packageManager === 'bun'
+              ? `bun add -g ${packageJson.name}`
+              : `npm i -g ${packageJson.name}`
 
       console.log(
         yellow(bold(`A new version of ${packageJson.name} is available!`)) +
