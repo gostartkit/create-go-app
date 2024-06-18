@@ -142,7 +142,6 @@ async function run(): Promise<void> {
   for (const f of AppFiles) {
     const rel = f.key;
     const codeFile = path.join(projectName, rel);
-    console.log(`codeFile: ${codeFile}`)
     let value = decoder.decode(f.value);
     if (rel.endsWith(".go") || rel.endsWith(".mod")) {
       value = value.replace(new RegExp(stubModuleName, 'g'), moduleName);
@@ -164,7 +163,6 @@ async function run(): Promise<void> {
     } finally {
       await w?.close();
     }
-    console.log(`dir: ${dir}`)
   }
 }
 
