@@ -214,5 +214,7 @@ run()
         reason
       )
     }
+    console.log()
+    await notifyUpdate()
     process.exit(1)
   })
