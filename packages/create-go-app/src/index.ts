@@ -9,7 +9,7 @@ import packageJson from '../package.json';
 import path from 'path';
 import { AppFiles, AppGitRev, StubVersion } from './data';
 import { open, mkdir } from 'node:fs/promises';
-import { randomString, replaceBrackets } from './utils';
+import { randomString, replaceWithMap } from './utils';
 
 let projectName: string = ''
 
@@ -146,7 +146,7 @@ async function run(): Promise<void> {
     if (rel.endsWith(".go") || rel.endsWith(".mod")) {
       value = value.replace(new RegExp(stubModuleName, 'g'), moduleName);
     }
-    value = replaceBrackets(value, v);
+    value = replaceWithMap(value, v);
     const dir = path.dirname(codeFile);
 
     try {
