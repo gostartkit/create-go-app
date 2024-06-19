@@ -1,18 +1,18 @@
-# create-go-app
+## create-go-app
 
-## npx
+### npx
 
 ```bash
 npx create-go-app demo
 ```
 
-## yarn
+### yarn
 
 ```bash
 yarn create go-app demo
 ```
 
-## pnpm
+### pnpm
 
 ```bash
 pnpm create go-app demo
