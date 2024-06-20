@@ -27,9 +27,8 @@
     },
     "scripts": {
         "dev": "ncc build ./src/index.ts -w -o dist/",
-        "build": "pnpm release",
-        "release": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
-        "publish": "rm -rf ./dist && pnpm release && npm publish",
+        "build": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+        "release": "pnpm build",
         "start": "ts-node src/index.ts"
     },
     "devDependencies": {
