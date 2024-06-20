@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 
-import path from 'path';
 import { Command } from 'commander';
 import { bold, cyan, green, red, yellow } from 'picocolors';
-import prompts, { type InitialReturnValue } from 'prompts';
 import checkForUpdate from 'update-check';
 import packageJson from '../package.json';
-import { validateName, validatePrefix } from './validator';
 import { getPkgManager } from './utils';
 
 let projectName: string = ''
@@ -15,18 +12,6 @@ const handleSigTerm = () => process.exit(0)
 
 process.on('SIGINT', handleSigTerm)
 process.on('SIGTERM', handleSigTerm)
-
-const onPromptState = (state: {
-  value: InitialReturnValue
-  aborted: boolean
-  exited: boolean
-}) => {
-  if (state.aborted) {
-    process.stdout.write('\x1B[?25h')
-    process.stdout.write('\n')
-    process.exit(1)
-  }
-}
 
 const program = new Command()
   .name(packageJson.name)
@@ -48,7 +33,7 @@ const program = new Command()
 
 const packageManager = getPkgManager()
 
-async function run(): Promise<void> {
+const run = async (): Promise<void> => {
 
   const programName = program.name()
 
@@ -59,7 +44,7 @@ async function run(): Promise<void> {
 
 const update = checkForUpdate(packageJson).catch(() => null)
 
-async function notifyUpdate(): Promise<void> {
+const notifyUpdate = async (): Promise<void> => {
   try {
     const res = await update
     if (res?.latest) {
@@ -74,10 +59,10 @@ async function notifyUpdate(): Promise<void> {
 
       console.log(
         yellow(bold(`A new version of ${packageJson.name} is available!`)) +
-          '\n' +
-          'You can update by running: ' +
-          cyan(updateMessage) +
-          '\n'
+        '\n' +
+        'You can update by running: ' +
+        cyan(updateMessage) +
+        '\n'
       )
     }
     process.exit()
