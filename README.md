@@ -1,5 +1,7 @@
 ## create-go-app
 
+help you create go app with app-stub template.
+
 ### npx
 
 ```bash
