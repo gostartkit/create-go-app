@@ -1,6 +1,6 @@
 {
     "name": "create-go-app",
-    "version": "0.1.15",
+    "version": "0.1.16",
     "keywords": [
         "go"
     ],
@@ -29,6 +29,7 @@
         "dev": "ncc build ./src/index.ts -w -o dist/",
         "build": "pnpm release",
         "release": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+        "publish": "rm -rf ./dist && pnpm release && npm publish",
         "start": "ts-node src/index.ts"
     },
     "devDependencies": {
