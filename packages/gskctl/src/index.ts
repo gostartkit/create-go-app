@@ -50,75 +50,11 @@ const packageManager = getPkgManager()
 
 async function run(): Promise<void> {
 
-  if (!projectName) {
-    const res = await prompts({
-      onState: onPromptState,
-      type: 'text',
-      name: 'path',
-      message: 'What is your project named?',
-      initial: 'demo',
-      validate: (name) => {
-        const valid = validateName(path.basename(path.resolve(name)))
-        if (valid) {
-          return true
-        }
-        return 'Invalid project name: ' + name
-      },
-    })
-
-    if (typeof res.path === 'string') {
-      projectName = res.path.trim()
-    }
-  }
-
   const programName = program.name()
-
-  if (!projectName) {
-    console.log(
-      '\nPlease specify the project name:\n' +
-      `  ${cyan(programName)} ${green('<project-name>')}\n` +
-      'For example:\n' +
-      `  ${cyan(programName)} ${green('demo')}\n\n` +
-      `Run ${cyan(`${programName} --help`)} to see all options.`
-    )
-    process.exit(1)
-  }
 
   const opts = program.opts()
 
-  let prefix = opts.prefix;
-
-  if (!prefix) {
-    const res = await prompts({
-      onState: onPromptState,
-      type: 'text',
-      name: 'prefix',
-      message: 'What is your prefix?',
-      initial: 'app.gostartkit.com/go',
-      validate: (prefix) => {
-        const valid = validatePrefix(prefix)
-        if (valid) {
-          return true
-        }
-        return 'Invalid prefix: ' + prefix
-      },
-    })
-
-    if (typeof res.prefix === 'string') {
-      prefix = res.prefix.trim()
-    }
-  }
-
-  if (!prefix) {
-    console.log(
-      '\nPlease specify the project name:\n' +
-      `  ${cyan(programName)} ${green('--prefix <module-prefix-name>')}\n` +
-      'For example:\n' +
-      `  ${cyan(programName)} ${green('--prefix app.gostartkit.com/go')}\n\n` +
-      `Run ${cyan(`${programName} --help`)} to see all options.`
-    )
-    process.exit(1)
-  }
+  console.log("hello word")
 }
 
 const update = checkForUpdate(packageJson).catch(() => null)
