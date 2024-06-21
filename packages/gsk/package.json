@@ -22,13 +22,10 @@
         "dist"
     ],
     "main": "./dist/index.js",
-    "bin": {
-        "gskctl": "./dist/index.js"
-    },
     "scripts": {
         "dev": "ncc build ./src/index.ts -w -o dist/",
         "build": "pnpm release",
-        "release": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+        "release": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache",
         "start": "ts-node src/index.ts"
     },
     "devDependencies": {
