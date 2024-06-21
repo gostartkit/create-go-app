@@ -2,7 +2,7 @@
     "name": "create-go-app",
     "version": "0.1.16",
     "keywords": [
-        "go"
+        "go","RESTful API","golang", "node", "nodejs"
     ],
     "description": "Create Go apps with no build configuration.",
     "repository": {
