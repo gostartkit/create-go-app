@@ -1,10 +1,10 @@
 {
     "name": "gsk",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "keywords": [
-        "go"
+        "reactjs", "nextjs", "nodejs","react", "next", "node"
     ],
-    "description": "Create Go apps with no build configuration.",
+    "description": "lib of gsk.",
     "repository": {
         "type": "git",
         "url": "https://github.com/gostartkit/create-go-app.git",
@@ -19,24 +19,17 @@
         "url": "https://github.com/gostartkit/create-go-app/issues"
     },
     "files": [
-        "dist"
+        "dist/react"
     ],
     "main": "./dist/index.js",
     "scripts": {
-        "dev": "ncc build ./src/index.ts -w -o dist/",
-        "build": "pnpm release",
-        "release": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache",
+        "build": "tsc",
+        "release": "tsc",
         "start": "ts-node src/index.ts"
     },
     "devDependencies": {
         "@types/node": "^20.14.2",
-        "@types/prompts": "^2.4.9",
-        "@vercel/ncc": "^0.38.1",
-        "commander": "^12.1.0",
-        "picocolors": "^1.0.1",
-        "prompts": "^2.4.2",
         "ts-node": "^10.9.2",
-        "typescript": "^5.4.5",
-        "update-check": "^1.5.4"
+        "typescript": "^5.4.5"
     }
 }
