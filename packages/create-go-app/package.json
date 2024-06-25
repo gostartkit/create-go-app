@@ -1,6 +1,6 @@
 {
     "name": "create-go-app",
-    "version": "0.1.16",
+    "version": "0.1.17",
     "keywords": [
         "go","RESTful API","golang", "node", "nodejs"
     ],
