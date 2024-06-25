@@ -24,11 +24,7 @@ pnpm create go-app demo
 pnpm dlx create-go-app demo
 ```
 
-## demo app
-
-a base app for RESTful API
-
-## Gegetting started
+## About demo app
 
 ### Build from source
 
