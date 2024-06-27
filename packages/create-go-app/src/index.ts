@@ -133,6 +133,15 @@ async function run(): Promise<void> {
       prefix: prefix
     })
   }
+
+  console.log(`
+create ${bold(projectName)} success.
+
+  cd ${cyan(projectName)}
+  go build -ldflags "-s -w" -buildmode=exe -tags release -o bin/${cyan(projectName)}
+
+Getting Started please read README.md
+`)
 }
 
 const update = checkForUpdate(packageJson).catch(() => null)
