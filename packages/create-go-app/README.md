@@ -40,7 +40,7 @@ bin/demo config
 
 **Note**: Please modify config.json as you need.
 
-3. Start service
+3. Start your app
 
 ```bash
 bin/demo serve
