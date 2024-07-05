@@ -48,4 +48,6 @@ bin/demo serve
 
 **Note**: Default config is use network: `unix`, you can change `network` to `tcp` and `addr` to `127.0.0.1:5000` for test.
 
+## Getting Started
+
 [Getting Started](https://gostartkit.com/docs/getting-started/)
