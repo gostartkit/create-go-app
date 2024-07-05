@@ -26,13 +26,13 @@ pnpm dlx create-go-app demo
 
 ## About demo app
 
-### Build from source
+1. Build from source
 
 ```bash
 go build -ldflags "-s -w" -buildmode=exe -tags release -o bin/demo
 ```
 
-### Create config
+2. Create config
 
 ```bash
 bin/demo config
@@ -40,7 +40,7 @@ bin/demo config
 
 **Note**: Please modify config.json as you need.
 
-### Start service
+3. Start service
 
 ```bash
 bin/demo serve
